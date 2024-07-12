@@ -8,7 +8,8 @@ pip install -U "ray"
 pip install  git+https://github.com/1027victor/pre_MARVEL.git
 ```
 
-## 如果上述安装失败按照下面的步骤
+## Tips
+if above failed
 ```
 git clone https://github.com/1027victor/pre_MARVEL.git
 cd pre_MARVEL
