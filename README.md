@@ -5,6 +5,11 @@
 conda create -n ray -c conda-forge python==3.11 pandas click -y
 conda activate ray
 pip install -U "ray"
+pip install  git+https://github.com/1027victor/pre_MARVEL.git
+```
+
+## 如果上述安装失败按照下面的步骤
+```
 git clone https://github.com/1027victor/pre_MARVEL.git
 cd pre_MARVEL
 pip install .
