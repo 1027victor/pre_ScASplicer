@@ -1,5 +1,6 @@
 # pre_MARVEL(Process upstream data single-cell)
 ## Installation
+###  First install depenced packages and install pre_MARVEL
 ```
 conda create -n ray -c conda-forge python==3.11 pandas click -y
 conda activate ray
