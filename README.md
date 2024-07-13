@@ -9,7 +9,7 @@ pip install  git+https://github.com/1027victor/pre_MARVEL.git
 ```
 
 ## Tips
-if above final step failed
++ if above final step failed
 ```
 git clone https://github.com/1027victor/pre_MARVEL.git
 cd pre_MARVEL
