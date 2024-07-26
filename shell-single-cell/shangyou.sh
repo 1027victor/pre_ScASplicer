@@ -15,7 +15,7 @@ STAR --runThreadN 24 --runMode genomeGenerate \
 mkdir -p ./rsem_index
 #RSEM index                                 
 rsem-prepare-reference \
---gtf  /www/hpw/human_gencode/human_gencode/gencode.v44.basic.annotation.gtf  -p 24 /www/hpw/human_gencode/GRCh38.p14.genome.fa \
+--gtf  /www/hpw/human_gencode/gencode.v44.basic.annotation.gtf  -p 24 /www/hpw/human_gencode/GRCh38.p14.genome.fa \
 ./rsem_index/human_v44 
 
 
