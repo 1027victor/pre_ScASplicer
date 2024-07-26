@@ -1,5 +1,7 @@
 #single-end sequence
 #Quality control
+mkdir -p fastqc
+#fastqc
 fastqc -t 24 -o ./fastqc/ -q ./*.gz
 mkdir -p ./STAR_index
 #Establishing an index
