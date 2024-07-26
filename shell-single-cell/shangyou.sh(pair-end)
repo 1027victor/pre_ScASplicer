@@ -62,6 +62,7 @@ mkdir -p ./martix
 cat fastq.txt | while read id
 do
     rsem-calculate-expression --bam \
+                          --paired-end \
                           -p 24 \
                           ./bam/${id}.Aligned.toTranscriptome.out.bam \
                           ./rsem_index/human_v46 \
