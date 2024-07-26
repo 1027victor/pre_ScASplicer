@@ -1,5 +1,4 @@
-
-#single-end sequence
+#pair-end sequence
 #Quality control
 mkdir -p fastqc
 #fastqc
