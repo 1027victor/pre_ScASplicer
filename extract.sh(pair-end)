@@ -9,13 +9,13 @@ for file in *.zip; do
 done
 
 # Create or clear the output file
-> paired_prefixes.txt
+> fastq.txt
 
 # Check each prefix in the associative array
 for prefix in "${!prefix_count[@]}"; do
     # If the count of this prefix is exactly 2
     if [ "${prefix_count[$prefix]}" -eq 2 ]; then
         # Write the prefix to the output file
-        echo $prefix >> paired_prefixes.txt
+        echo $prefix >> fastq.txt
     fi
 done
