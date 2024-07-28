@@ -4,7 +4,7 @@
 cd ./clean
 
 # Create or empty the existing file list before starting
-> file_names.txt
+# > fastq.txt
 
 # Loop through all .gz files in the directory
 for file in *.gz
