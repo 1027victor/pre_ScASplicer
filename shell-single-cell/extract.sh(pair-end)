@@ -18,3 +18,4 @@ for prefix in "${!prefix_count[@]}"; do
         # Write the prefix to the output file
         echo $prefix >> fastq.txt
     fi
+done
