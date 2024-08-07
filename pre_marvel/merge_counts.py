@@ -49,18 +49,44 @@ def process_and_filter_data(merged_data_file, metadata_file):
     filtered_data.drop(columns=['mean_expression']).to_csv("final_filtered_counts.txt", sep='\t', index=False)
     return "final_filtered_counts.txt"
 
+# @click.command()
+# @click.option('--path_to_data','-p',default="martix/gene_level", help='Path to gene data files.')
+# @click.option('--quantitative_indicator','-q',default="expected_count", help='Quantitative indicator to use.')
+# @click.option('--species', default="mouse", help='species')
+# @click.option('--gtf_file_path', '-g',default="/www/hpw/mouse_gencode/gencode.vM33.chr_patch_hapl_scaff.annotation.gtf", help='Path to GTF file.')
+# def run_pipeline(path_to_data, quantitative_indicator, gtf_file_path,species):
+#     ray.init()
+#     merged_data_future = merge_data_files.remote(path_to_data, quantitative_indicator)
+#     metadata_future = extract_gene_metadata.remote(gtf_file_path,species=species)
+#     final_data_future = process_and_filter_data.remote(merged_data_future, metadata_future)
+#     final_result = ray.get(final_data_future)
+#     click.echo(f"Processing complete. Output saved to: {final_result}")
+
+
 @click.command()
-@click.option('--path_to_data','-p',default="martix/gene_level", help='Path to gene data files.')
-@click.option('--quantitative_indicator','-q',default="expected_count", help='Quantitative indicator to use.')
+@click.option('--path_to_data', '-p', default="martix/gene_level", help='Path to gene data files.')
+@click.option('--quantitative_indicator', '-q', default="expected_count", help='Quantitative indicator to use.')
 @click.option('--species', default="mouse", help='species')
-@click.option('--gtf_file_path', '-g',default="/www/hpw/mouse_gencode/gencode.vM33.chr_patch_hapl_scaff.annotation.gtf", help='Path to GTF file.')
-def run_pipeline(path_to_data, quantitative_indicator, gtf_file_path,species):
+@click.option('--gtf_file_path', '-g', default="/www/hpw/mouse_gencode/gencode.vM33.chr_patch_hapl_scaff.annotation.gtf", help='Path to GTF file.')
+@click.option('--metadata', '-m', default=None, help='gene metadata.')
+def run_pipeline(path_to_data, quantitative_indicator, gtf_file_path, species, metadata_path):
     ray.init()
     merged_data_future = merge_data_files.remote(path_to_data, quantitative_indicator)
-    metadata_future = extract_gene_metadata.remote(gtf_file_path,species=species)
+    
+    if metadata:
+        # Use pre-extracted metadata if provided
+        metadata_future = ray.put(metadata)
+    else:
+        # Extract metadata if not provided
+        metadata_future = extract_gene_metadata.remote(gtf_file_path, species=species)
+    
     final_data_future = process_and_filter_data.remote(merged_data_future, metadata_future)
     final_result = ray.get(final_data_future)
     click.echo(f"Processing complete. Output saved to: {final_result}")
+
+if __name__ == '__main__':
+    run_pipeline()
+
 
 if __name__ == "__main__":
     run_pipeline()
