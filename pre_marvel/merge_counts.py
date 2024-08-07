@@ -69,7 +69,7 @@ def process_and_filter_data(merged_data_file, metadata_file):
 @click.option('--species', default="mouse", help='species')
 @click.option('--gtf_file_path', '-g', default="/www/hpw/mouse_gencode/gencode.vM33.chr_patch_hapl_scaff.annotation.gtf", help='Path to GTF file.')
 @click.option('--metadata', '-m', default=None, help='gene metadata.')
-def run_pipeline(path_to_data, quantitative_indicator, gtf_file_path, species, metadata_path):
+def run_pipeline(path_to_data, quantitative_indicator, gtf_file_path, species, metadata):
     ray.init()
     merged_data_future = merge_data_files.remote(path_to_data, quantitative_indicator)
     
