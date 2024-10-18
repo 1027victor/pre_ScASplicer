@@ -6,7 +6,6 @@ import ray
 @click.command()
 @click.option('--directory', type=click.Path(exists=True), required=True, help='Input file path')
 @click.option('--output-file', type=click.Path(), required=True, help='Output file')
-@click.option('--threshold', type=int, required=False, help='The minimum number of reads mapping',default=10)
 @click.option('--nums', type=int, required=False, help='numers of core',default=30)
 def process_files(directory, output_file,threshold,nums):
     # 初始化ray
@@ -28,9 +27,8 @@ def process_files(directory, output_file,threshold,nums):
     click.echo(f"The output file data has been successfully saved to {output_file}")
 
 @ray.remote
-def process_file(file_path,threshold):
+def process_file(file_path):
     data = pd.read_table(file_path, sep='\t', index_col=0)
-    data = data[data.iloc[:,0]>threshold]
     return data
 
 if __name__ == '__main__':
