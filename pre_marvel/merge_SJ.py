@@ -7,15 +7,14 @@ import ray
 @click.option('--directory', type=click.Path(exists=True), required=True, help='Input file path')
 @click.option('--output-file', type=click.Path(), required=True, help='Output file')
 @click.option('--nums', type=int, required=False, help='numers of core',default=30)
-def process_files(directory, output_file,threshold,nums):
+def process_files(directory, output_file,nums):
     # 初始化ray
     ray.init(num_cpus=nums, ignore_reinit_error=True)  # ignore_reinit_error=True允许在ray已初始化的情况下忽略重复初始化的错误
 
     file_paths = [os.path.join(directory, i) for i in os.listdir(directory) if i.endswith('.txt')]
     
     # 使用ray并行处理文件
-    data_frames = ray.get([process_file.remote(file_path,threshold) for file_path in file_paths])
-    # 过滤低质量的reads数目
+    data_frames = ray.get([process_file.remote(file_path) for file_path in file_paths])
     null = pd.concat(data_frames, axis=1)
     null = null.sort_index(axis=1)
     null = null.fillna('NA')
