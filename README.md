@@ -5,13 +5,13 @@
 conda create -n ray -c conda-forge python==3.11 pandas click -y
 conda activate ray
 pip install -U "ray"
-pip install  git+https://github.com/1027victor/pre_MARVEL.git
+pip install  git+https://github.com/1027victor/pre_ScSpliceshiner.git
 ```
 
 ## Tips
 + if above final step failed
 ```
-git clone https://github.com/1027victor/pre_MARVEL.git
+git clone https://github.com/1027victor/pre_ScSpliceshiner.git
 cd pre_MARVEL
 pip install .
 ```
