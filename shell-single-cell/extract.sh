@@ -9,6 +9,7 @@ cd ./clean
 # Loop through all .gz files in the directory
 for file in *.gz
 do
-  # Extract the part before the underscore and append it to the file
-  echo "${file%%_*}" >> ../fastq.txt
-done
+  # 提取下划线前的部分并输出到 fastq.txt
+  echo "${file%%_*}"
+done | sort | uniq > ../fastq.txt
+
