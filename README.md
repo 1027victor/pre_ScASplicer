@@ -30,7 +30,6 @@ Options:
 Options:
   --directory PATH     Input file path  [required]
   --output-file PATH   Output file  [required]
-  --threshold INTEGER  The minimum number of reads mapping
   --nums INTEGER       numers of core
 
 ```
@@ -47,6 +46,6 @@ Options:
 ## Run
 ```
 merge-counts -p xxx -q xxx --species xxx -g xxx
-merge-SJ --directory xxx --output-file xxx --threshold xxx --nums xxx
+merge-SJ --directory xxx --output-file xxx  --nums xxx
 merge-bed --input-dir xxx --intermediate-dir xxx --output-file xxx
 ```
