@@ -23,7 +23,8 @@ mkdir -p ./clean
 #filter
 cat fastq.txt | while read id
 do
-    trim_galore --length 20 -j 16 \
+    trim_galore --quality 20 --phred33 \
+    --length 20 -j 16 \
     -o ./clean \
     ${id}.fastq.gz
 done 
