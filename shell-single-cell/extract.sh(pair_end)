@@ -1,0 +1,23 @@
+# from clean folder extract
+#!/bin/bash
+
+# 清空fastq.txt文件
+> fastq.txt
+
+# 用一个数组记录已经写入的前缀
+declare -A seen_prefixes
+
+# 遍历当前目录下所有的.fq.gz文件
+for file in *.fq.gz; do
+  # 提取文件名中的第一个下划线之前的部分
+  prefix=$(echo "$file" | cut -d'_' -f1)
+  
+  # 统计该prefix在当前目录中出现的次数
+  count=$(ls *.fq.gz | grep -o "^$prefix" | wc -l)
+  
+  # 如果出现两次并且前缀没有被写入过
+  if [ "$count" -eq 2 ] && [ -z "${seen_prefixes[$prefix]}" ]; then
+    echo "$prefix" >> fastq.txt
+    seen_prefixes["$prefix"]=1  # 标记该前缀已经写入
+  fi
+done
