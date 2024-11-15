@@ -25,6 +25,7 @@ cat fastq.txt | while read id
 do
     trim_galore --quality 20 --phred33 \
     --length 20 -j 16 \
+    --stringency 3 # 可以容忍前后adapter重叠的碱基数为3
     -o ./clean \
     ${id}.fastq.gz
 done 
