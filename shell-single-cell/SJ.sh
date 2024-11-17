@@ -13,4 +13,4 @@ do
     awk -v OFS='\t' -v colname="$filename" 'BEGIN {print "chr", "start", "end", colname} {print $1, $2, $3, $7}' "$file" | awk -v OFS='\t' 'NR==1{print "coord.intron", $4; next} {print $1":"$2":"$3, $4}' > "./SJ/${filename}.txt"
 done
 
-python marge_SJ.py --directory ./SJ  --output-file result.csv
+python merge_SJ.py --directory ./SJ  --output-file result.csv
