@@ -17,7 +17,7 @@ setup(
             'merge-bed=pre_marvel.merge_bed:process_and_combine_counts',
             'merge-counts=pre_marvel.merge_counts:run_pipeline',
             'merge-SJ=pre_marvel.merge_SJ:process_files'，
-            'Preprocess_rMATS=pre_marvel.rmats:preprocess_rmats',
+            'Preprocess-rMATS=pre_marvel.rmats:preprocess_rmats',
             'PrepareBedfile=pre_marvel.CreateBedFile_RI:prepare_bed_file_ri'
         ]';
     },
