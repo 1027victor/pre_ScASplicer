@@ -3,7 +3,7 @@ import os
 import ray
 import click
 @ray.remote
-# 整合gene_counts文件
+# Merge the gene_counts file
 def merge_data_files(path, quantitative_indicators):
     data_frames = []
     for file in os.listdir(path):
@@ -19,7 +19,7 @@ def merge_data_files(path, quantitative_indicators):
     return output_filename
 
 @ray.remote
-# 从gtf文件中提取基因元信息
+# Extract gene metadata information from a GTF file
 def extract_gene_metadata(gtf_path, species='mouse'):
     gene_metadata = {'gene_id': [], 'gene_short_name': [],'gene_type': []}
     with open(gtf_path, 'r') as file:
