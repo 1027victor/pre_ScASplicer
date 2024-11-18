@@ -31,7 +31,7 @@ def extract_gene_metadata(gtf_path, species='mouse'):
                 attributes = {attr.strip().split(' ')[0]: attr.strip().split(' ')[1].strip('"') for attr in fields[8].split(';') if attr.strip()}
                 gene_metadata['gene_id'].append(attributes.get('gene_id'))
                 gene_metadata['gene_short_name'].append(attributes.get('gene_name'))
-                 gene_metadata['gene_type'].append(attributes.get('gene_type'))
+                gene_metadata['gene_type'].append(attributes.get('gene_type'))
     metadata_df = pd.DataFrame(gene_metadata)
     output_filename = f'{species}_Gene_metadata.txt'
     metadata_df.to_csv(output_filename, sep='\t', index=False)
