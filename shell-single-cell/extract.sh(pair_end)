@@ -1,23 +1,23 @@
 # from clean folder extract
 #!/bin/bash
 
-# 清空fastq.txt文件
+# Clear the fastq.txt file
 > fastq.txt
 
-# 用一个数组记录已经写入的前缀
+# Use an array to record the prefixes that have already been written
 declare -A seen_prefixes
 
-# 遍历当前目录下所有的.fq.gz文件
+# Traverse all .fq.gz files in the current directory
 for file in *.fq.gz; do
-  # 提取文件名中的第一个下划线之前的部分
+  # Extract the part of the file name before the first underscore
   prefix=$(echo "$file" | cut -d'_' -f1)
   
-  # 统计该prefix在当前目录中出现的次数
+  # Count the number of occurrences of the prefix in the current directory
   count=$(ls *.fq.gz | grep -o "^$prefix" | wc -l)
   
-  # 如果出现两次并且前缀没有被写入过
+  # If it happens twice and the prefix has not been written before
   if [ "$count" -eq 2 ] && [ -z "${seen_prefixes[$prefix]}" ]; then
     echo "$prefix" >> fastq.txt
-    seen_prefixes["$prefix"]=1  # 标记该前缀已经写入
+    seen_prefixes["$prefix"]=1  # The prefix has been marked as written
   fi
 done
