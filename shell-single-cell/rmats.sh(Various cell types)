@@ -1,1 +1,200 @@
+#!/bin/bash
+# paired
+# 设置基本参数
+GTF="gencode.v31.annotation.gtf"  # GTF 文件路径
+OUTPUT_DIR="rMATS_results"        # 总输出文件夹
+THREADS=8                         # 线程数
+READ_LENGTH=125                   # 读取长度
+
+# 指定存储样本文本文件的目录
+SAMPLE_DIR="path_to_sample_dir"
+
+# 检查样本文本文件目录是否存在
+if [ ! -d "$SAMPLE_DIR" ]; then
+    echo "Error: Directory $SAMPLE_DIR does not exist."
+    exit 1
+fi
+
+# 获取样本文本文件列表
+sample_files=($(ls $SAMPLE_DIR/*.txt 2>/dev/null))
+
+# 检查是否有样本文本文件
+if [ ${#sample_files[@]} -eq 0 ]; then
+    echo "Error: No .txt files found in directory $SAMPLE_DIR."
+    exit 1
+fi
+
+# 创建输出目录
+mkdir -p $OUTPUT_DIR
+
+# 两两循环比较
+for ((i=0; i<${#sample_files[@]}-1; i++)); do
+    for ((j=i+1; j<${#sample_files[@]}; j++)); do
+        # 获取样本文件
+        SAMPLE1=${sample_files[i]}
+        SAMPLE2=${sample_files[j]}
+        
+        # 提取文件名（去掉路径和扩展名，用于命名输出目录）
+        NAME1=$(basename "$SAMPLE1" .txt)
+        NAME2=$(basename "$SAMPLE2" .txt)
+        
+        # 创建特定比较的输出目录
+        COMP_OUTPUT_DIR="$OUTPUT_DIR/${NAME1}_vs_${NAME2}"
+        mkdir -p $COMP_OUTPUT_DIR
+
+        # 执行 rMATS
+        echo "Running rMATS for $NAME1 vs $NAME2..."
+        rmats \
+            --b1 $SAMPLE1 \
+            --b2 $SAMPLE2 \
+            --gtf $GTF \
+            --od $COMP_OUTPUT_DIR \
+            --tmp $COMP_OUTPUT_DIR/tmp \
+            -t paired \
+            --readLength $READ_LENGTH \
+            --variable-read-length \
+            --nthread $THREADS \
+            --statoff
+
+        # 检查 rMATS 是否成功
+        if [ $? -ne 0 ]; then
+            echo "Error: rMATS failed for $NAME1 vs $NAME2. Check input files or parameters."
+            exit 1
+        fi
+
+        echo "Comparison ${NAME1} vs ${NAME2} completed: Results saved in $COMP_OUTPUT_DIR"
+    done
+done
+
+echo "All comparisons completed successfully."
+
+
+# 设置输入和输出目录
+RESULTS_DIR="rMATS_results"  # 存放 rMATS 结果的目录
+MERGED_DIR="merged_results" # 存放合并文件的目录
+
+# 创建输出目录
+mkdir -p $MERGED_DIR
+
+# 定义需要合并的文件类型
+FILES_TO_MERGE=("fromGTF.A3SS.txt" "fromGTF.A5SS.txt" "fromGTF.MXE.txt" "fromGTF.SE.txt" "fromGTF.RI.txt")
+
+# 循环处理每种文件类型
+for file in "${FILES_TO_MERGE[@]}"; do
+    OUTPUT_FILE="$MERGED_DIR/$file" # 最终合并后的文件路径
+
+    # 创建新文件，写入表头
+    echo "Adding header for $file"
+    head -n 1 $(find $RESULTS_DIR -type f -name "$file" | head -n 1) > $OUTPUT_FILE
+
+    # 合并所有同类文件（跳过表头行）
+    for result_file in $(find $RESULTS_DIR -type f -name "$file"); do
+        tail -n +2 "$result_file" >> $OUTPUT_FILE
+    done
+
+    echo "$file merged into $OUTPUT_FILE"
+done
+
+echo "All files merged successfully into $MERGED_DIR"
+
+
+
+#!/bin/bash
+# single
+# 设置基本参数
+GTF="gencode.v31.annotation.gtf"  # GTF 文件路径
+OUTPUT_DIR="rMATS_results"        # 总输出文件夹
+THREADS=8                         # 线程数
+READ_LENGTH=125                   # 读取长度
+
+# 指定存储样本文本文件的目录
+SAMPLE_DIR="path_to_sample_dir"
+
+# 检查样本文本文件目录是否存在
+if [ ! -d "$SAMPLE_DIR" ]; then
+    echo "Error: Directory $SAMPLE_DIR does not exist."
+    exit 1
+fi
+
+# 获取样本文本文件列表
+sample_files=($(ls $SAMPLE_DIR/*.txt 2>/dev/null))
+
+# 检查是否有样本文本文件
+if [ ${#sample_files[@]} -eq 0 ]; then
+    echo "Error: No .txt files found in directory $SAMPLE_DIR."
+    exit 1
+fi
+
+# 创建输出目录
+mkdir -p $OUTPUT_DIR
+
+# 两两循环比较
+for ((i=0; i<${#sample_files[@]}-1; i++)); do
+    for ((j=i+1; j<${#sample_files[@]}; j++)); do
+        # 获取样本文件
+        SAMPLE1=${sample_files[i]}
+        SAMPLE2=${sample_files[j]}
+        
+        # 提取文件名（去掉路径和扩展名，用于命名输出目录）
+        NAME1=$(basename "$SAMPLE1" .txt)
+        NAME2=$(basename "$SAMPLE2" .txt)
+        
+        # 创建特定比较的输出目录
+        COMP_OUTPUT_DIR="$OUTPUT_DIR/${NAME1}_vs_${NAME2}"
+        mkdir -p $COMP_OUTPUT_DIR
+
+        # 执行 rMATS
+        echo "Running rMATS for $NAME1 vs $NAME2..."
+        rmats \
+            --b1 $SAMPLE1 \
+            --b2 $SAMPLE2 \
+            --gtf $GTF \
+            --od $COMP_OUTPUT_DIR \
+            --tmp $COMP_OUTPUT_DIR/tmp \
+            -t single \
+            --readLength $READ_LENGTH \
+            --variable-read-length \
+            --nthread $THREADS \
+            --statoff
+
+        # 检查 rMATS 是否成功
+        if [ $? -ne 0 ]; then
+            echo "Error: rMATS failed for $NAME1 vs $NAME2. Check input files or parameters."
+            exit 1
+        fi
+
+        echo "Comparison ${NAME1} vs ${NAME2} completed: Results saved in $COMP_OUTPUT_DIR"
+    done
+done
+
+echo "All comparisons completed successfully."
+
+
+# 设置输入和输出目录
+RESULTS_DIR="rMATS_results"  # 存放 rMATS 结果的目录
+MERGED_DIR="merged_results" # 存放合并文件的目录
+
+# 创建输出目录
+mkdir -p $MERGED_DIR
+
+# 定义需要合并的文件类型
+FILES_TO_MERGE=("fromGTF.A3SS.txt" "fromGTF.A5SS.txt" "fromGTF.MXE.txt" "fromGTF.SE.txt" "fromGTF.RI.txt")
+
+# 循环处理每种文件类型
+for file in "${FILES_TO_MERGE[@]}"; do
+    OUTPUT_FILE="$MERGED_DIR/$file" # 最终合并后的文件路径
+
+    # 创建新文件，写入表头
+    echo "Adding header for $file"
+    head -n 1 $(find $RESULTS_DIR -type f -name "$file" | head -n 1) > $OUTPUT_FILE
+
+    # 合并所有同类文件（跳过表头行）
+    for result_file in $(find $RESULTS_DIR -type f -name "$file"); do
+        tail -n +2 "$result_file" >> $OUTPUT_FILE
+    done
+
+    echo "$file merged into $OUTPUT_FILE"
+done
+
+echo "All files merged successfully into $MERGED_DIR"
 
