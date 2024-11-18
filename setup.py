@@ -4,7 +4,7 @@ setup(
     name='pre_marvel',
     version='0.1.0',
     packages=find_packages(),
-    description='A package for merging gene data files.',
+    description='A package that simplifies and streamlines the generation of MARVEL input files',
     author='Pengwei Hu',
     # install_requires=[
     #     'pandas',
