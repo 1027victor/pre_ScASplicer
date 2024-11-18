@@ -10,7 +10,7 @@ cd ./clean
 # pair-end
 for file in *.gz
 do
-  # 提取下划线前的部分并输出到 fastq.txt
+  # Extract the text before the underlined part and output it to the file fastq.txt
   echo "${file%%_*}"
 done | sort | uniq > ../fastq.txt
 
@@ -18,7 +18,7 @@ done | sort | uniq > ../fastq.txt
 # single-end
 for file in *.gz
 do
-  # 提取下划线前的部分并输出到 fastq.txt
+  # Extract the text before the underlined part and output it to the file fastq.txt
   echo "${file%%.*}"
 done | sort | uniq > ../fastq.txt
 
