@@ -21,6 +21,7 @@ pip install .
 ```
 ## Use pre_MARVEL
 Below are examples of typical pre_MARVEL usage. Using the “--help” option with any bedtools will report a list of all command line options.
++ Splice junction counts matrix
 ### merge-counts --help
 ```
 Options:
