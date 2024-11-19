@@ -44,17 +44,36 @@ Options:
 ```
 + Intron count matrix
   
-merge-bed --help
+PrepareBedfile --help
 ```
 Options:
-  --input-dir PATH         Path to the input directory.  [required]
-  --intermediate-dir PATH  Path to the directory for intermediate intron
-                           matrices.  [required]
-  --output-file PATH       Output file for the concatenated matrix.
-                           [required]
+  --bed-file PATH         Path to the BED file.  [required]
+  --counts-dir DIRECTORY  Directory path containing counts files.  [required]
+  --output-dir PATH       Directory path to save processed counts files.
+                          [required]
+  --combined-output PATH  File path to save the combined counts file.
+                          [required]
+  --cpus INTEGER          Number of CPUs to use.
+  --help                  Show this message and exit.
 
 ```
+
 + Splicing event metadata
+
+```
+Options:
+  --event-types [SE|MXE|RI|A5SS|A3SS]
+                                  Splicing event types to process; multiple
+                                  can be specified.
+  --files PATH                    Input file paths corresponding to event
+                                  types; multiple can be specified, matching
+                                  the event types one-to-one.
+  --gtf PATH                      Path to the GTF file used in rMATS.
+                                  [required]
+  --output-dir PATH               Directory path to save the output results.
+                                  [required]
+  --help                          Show this message and exit.
+```
 + Gene metadata
 ## Run
 ```
