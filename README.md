@@ -54,6 +54,8 @@ Options:
                            [required]
 
 ```
++ Splicing event metadata
++ Gene metadata
 ## Run
 ```
 merge-counts -p xxx -q xxx --species xxx -g xxx
