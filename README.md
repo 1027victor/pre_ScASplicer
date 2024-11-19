@@ -1,4 +1,5 @@
 # pre_MARVEL(Process upstream data single-cell)
+`pre_MARVEL` is a Python package that simplifies and streamlines the generation of  MARVEL input files 
 ## Installation
 ###  First install depenced packages then install pre_MARVEL
 ```
