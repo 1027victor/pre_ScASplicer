@@ -2,6 +2,7 @@
 `pre_MARVEL` is a Python package that simplifies and streamlines the generation of  MARVEL input files,it mainly processes scRNA-seq datasets generated from the plate-based platforms, e.g. Smart-seq2 or microfluidic-based platforms, e.g. Fluidigm C1 instrument.
 # Feature
 + simplifies and streamlines the generation of  [`MARVEL`](https://wenweixiong.github.io/MARVEL_Plate.html) `input files`
+# Quick Start
 ## Installation
 ###  First install depenced packages then install pre_MARVEL
 ```
@@ -18,7 +19,8 @@ git clone https://github.com/1027victor/pre_ScSpliceshiner.git
 cd pre_MARVEL
 pip install .
 ```
-## Help
+## Use pre_MARVEL
+Below are examples of typical pre_MARVEL usage. Using the “--help” option with any bedtools will report a list of all command line options.
 ### merge-counts --help
 ```
 Options:
