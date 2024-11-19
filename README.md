@@ -43,8 +43,23 @@ Options:
 
 ```
 + Intron count matrix
-  
+
 PrepareBedfile --help
+
+```
+Usage: PrepareBedfile [OPTIONS]
+
+  Processes an rMATS output file for Retained Intron events to extract intron
+  coordinates and saves it as a BED file.
+
+Options:
+  --input PATH   Input rMATS RI file path.  [required]
+  --output PATH  Output BED file path.  [required]
+  --help         Show this message and exit.
+
+```
+  
+merge-bed --help
 ```
 Options:
   --bed-file PATH         Path to the BED file.  [required]
