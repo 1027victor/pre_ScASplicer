@@ -1,5 +1,7 @@
-# pre_MARVEL(Process upstream data single-cell)
-`pre_MARVEL` is a Python package that simplifies and streamlines the generation of  MARVEL input files 
+# pre_MARVEL
+`pre_MARVEL` is a Python package that simplifies and streamlines the generation of  MARVEL input files,it mainly processes scRNA-seq datasets generated from the plate-based platforms, e.g. Smart-seq2 or microfluidic-based platforms, e.g. Fluidigm C1 instrument.
+# Feature
++ simplifies and streamlines the generation of  [`MARVEL`](https://wenweixiong.github.io/MARVEL_Plate.html) input files
 ## Installation
 ###  First install depenced packages then install pre_MARVEL
 ```
