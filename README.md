@@ -42,7 +42,9 @@ Options:
   --nums INTEGER       numers of core
 
 ```
-### merge-bed --help
++ Intron count matrix
+  
+merge-bed --help
 ```
 Options:
   --input-dir PATH         Path to the input directory.  [required]
