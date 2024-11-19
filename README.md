@@ -25,12 +25,16 @@ Below are examples of typical pre_MARVEL usage. Using the “--help” option wi
   
 merge-counts --help
 ```
+Usage: merge-counts [OPTIONS]
+
 Options:
   -p, --path_to_data TEXT         Path to gene data files.
-  -q, --quantitative_indicator TEXT Quantitative indicator to use.
+  -q, --quantitative_indicator TEXT
+                                  Quantitative indicator to use.
   --species TEXT                  species
   -g, --gtf_file_path TEXT        Path to GTF file.
-
+  -m, --metadata TEXT             gene metadata.
+  --help                          Show this message and exit.
 ```
 + Splice junction counts matrix
   
@@ -61,6 +65,12 @@ Options:
   
 merge-bed --help
 ```
+Usage: merge-bed [OPTIONS]
+
+  Use Ray to process all counts files in the specified directory in parallel,
+  output the results to the specified directory, and then combine the
+  processed counts files into a single file.
+
 Options:
   --bed-file PATH         Path to the BED file.  [required]
   --counts-dir DIRECTORY  Directory path containing counts files.  [required]
