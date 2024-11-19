@@ -21,7 +21,7 @@ pip install .
 ```
 ## Use pre_MARVEL
 Below are examples of typical pre_MARVEL usage. Using the “--help” option with any bedtools will report a list of all command line options.
-+ Splice junction counts matrix
++ Gene expression matrix
 ```
 merge-counts --help
 Options:
@@ -31,7 +31,8 @@ Options:
   -g, --gtf_file_path TEXT        Path to GTF file.
 
 ```
-### merge-SJ --help
++ Splice junction counts matrix
+merge-SJ --help
 ```
 Options:
   --directory PATH     Input file path  [required]
