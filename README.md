@@ -40,10 +40,13 @@ Options:
   
 merge-SJ --help
 ```
+Usage: merge-SJ [OPTIONS]
+
 Options:
-  --directory PATH     Input file path  [required]
-  --output-file PATH   Output file  [required]
-  --nums INTEGER       numers of core
+  --directory PATH    Input file path  [required]
+  --output-file PATH  Output file  [required]
+  --nums INTEGER      numers of core
+  --help              Show this message and exit.
 
 ```
 + Intron count matrix
