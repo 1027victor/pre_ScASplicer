@@ -88,7 +88,15 @@ Options:
 
 + Splicing event metadata
 
+PreprocessrMATS --help
+
 ```
+Options:
+Usage: PreprocessrMATS [OPTIONS]
+
+  Process rMATS output files to extract splicing event coordinates and
+  annotations.
+
 Options:
   --event-types [SE|MXE|RI|A5SS|A3SS]
                                   Splicing event types to process; multiple
