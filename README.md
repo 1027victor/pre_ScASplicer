@@ -31,8 +31,8 @@ Options:
   -g, --gtf_file_path TEXT        Path to GTF file.
 
 ```
-+ Splice junction counts matrix
-  merge-SJ --help
++ Splice junction counts matrix  
+merge-SJ --help
 ```
 Options:
   --directory PATH     Input file path  [required]
