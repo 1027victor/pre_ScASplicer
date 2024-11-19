@@ -32,7 +32,7 @@ Options:
 
 ```
 + Splice junction counts matrix
-+ merge-SJ --help
+  merge-SJ --help
 ```
 Options:
   --directory PATH     Input file path  [required]
