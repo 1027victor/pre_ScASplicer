@@ -23,7 +23,7 @@ pip install .
 Below are examples of typical pre_MARVEL usage. Using the “--help” option with any bedtools will report a list of all command line options.
 + ### Gene expression matrix
   
-merge-counts --help
+#### merge-counts --help
 ```
 Usage: merge-counts [OPTIONS]
 
@@ -36,9 +36,9 @@ Options:
   -m, --metadata TEXT             gene metadata.
   --help                          Show this message and exit.
 ```
-+ Splice junction counts matrix
++ ### Splice junction counts matrix
   
-merge-SJ --help
+#### merge-SJ --help
 ```
 Usage: merge-SJ [OPTIONS]
 
@@ -49,9 +49,9 @@ Options:
   --help              Show this message and exit.
 
 ```
-+ Intron count matrix
++ ### Intron count matrix
 
-PrepareBedfile --help
+#### PrepareBedfile --help
 
 ```
 Usage: PrepareBedfile [OPTIONS]
@@ -66,7 +66,7 @@ Options:
 
 ```
   
-merge-bed --help
+#### merge-bed --help
 ```
 Usage: merge-bed [OPTIONS]
 
@@ -86,9 +86,9 @@ Options:
 
 ```
 
-+ Splicing event metadata
++ ### Splicing event metadata
 
-PreprocessrMATS --help
+#### PreprocessrMATS --help
 
 ```
 Options:
@@ -110,7 +110,7 @@ Options:
                                   [required]
   --help                          Show this message and exit.
 ```
-+ Gene metadata
++ ### Gene metadata
 ## Run
 ```
 merge-counts -p xxx -q xxx --species xxx -g xxx
