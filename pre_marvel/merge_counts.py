@@ -43,7 +43,8 @@ def process_and_filter_data(merged_data_file, metadata_file):
     metadata = pd.read_csv(metadata_file, sep='\t', index_col='gene_id')
     metadata = metadata.sort_index(axis=0)
     full_data = pd.concat([metadata, data], axis=1)
-    full_data['mean_expression'] = full_data.iloc[:, 1:].mean(axis=1)
+    # full_data['mean_expression'] = full_data.iloc[:, 1:].mean(axis=1)
+    full_data['mean_expression'] = full_data.iloc[:, 2:].mean(axis=1)
     max_expression = full_data.groupby('gene_short_name')['mean_expression'].transform(max)
     filtered_data = full_data[full_data['mean_expression'] == max_expression]
     filtered_data = filtered_data.drop_duplicates(subset=['gene_short_name'], keep='first')
