@@ -48,7 +48,7 @@ def process_and_filter_data(merged_data_file, metadata_file):
     max_expression = full_data.groupby('gene_short_name')['mean_expression'].transform(max)
     filtered_data = full_data[full_data['mean_expression'] == max_expression]
     filtered_data = filtered_data.drop_duplicates(subset=['gene_short_name'], keep='first')
-    filtered_data.drop(columns=['mean_expression']).to_csv("final_filtered_counts.txt", sep='\t', index=False)
+    filtered_data.drop(columns=['mean_expression','gene_type']).to_csv("final_filtered_counts.txt", sep='\t', index=False)
     return "final_filtered_counts.txt"
 
 # @click.command()
