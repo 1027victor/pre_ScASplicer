@@ -21,11 +21,12 @@ rsem-prepare-reference \
 
 mkdir -p ./clean
 #filter
+# The number of base pairs that can be tolerated for overlapping adapter sequences at the 5' and 3' ends is 3
 cat fastq.txt | while read id
 do
     trim_galore --quality 20 --phred33 \
     --length 20 -j 16 \
-    --stringency 3 # The number of base pairs that can be tolerated for overlapping adapter sequences at the 5' and 3' ends is 3
+    --stringency 3 \ 
     -o ./clean \
     --paired ${id}_1.fastq.gz ${id}_2.fastq.gz
 done 
