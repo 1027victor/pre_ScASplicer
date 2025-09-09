@@ -13,8 +13,8 @@ def merge_data_files(path, quantitative_indicators):
             selected_data = data[[quantitative_indicators]]
             data_frames.append(selected_data)
     merged_data = pd.concat(data_frames, axis=1)
-    merged_data.columns = [file.split('.')[0] for file in os.listdir(path) if file.endswith('.genes.results')]
-    merged_data.index.name = 'gene_id'
+    merged_data.columns = [file.split('.')[0] for file in os.listdir(path) if file.endswith('.isofroms.results')]
+    merged_data.index.name = 'isoform_id'
     output_filename = f'{quantitative_indicators}.txt'
     merged_data.to_csv(output_filename, sep='\t')
     return output_filename
