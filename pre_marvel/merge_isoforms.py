@@ -8,7 +8,7 @@ import click
 def merge_data_files(path, quantitative_indicators):
     data_frames = []
     for file in os.listdir(path):
-        if file.endswith('.genes.results'):
+        if file.endswith('.isofroms.results'):
             data = pd.read_table(os.path.join(path, file), index_col=0)
             selected_data = data[[quantitative_indicators]]
             data_frames.append(selected_data)
